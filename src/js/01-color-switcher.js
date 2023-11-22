@@ -1,6 +1,8 @@
-const start = document.querySelector('[data-start]');
-const stop = document.querySelector('[data-stop]');
-const body = document.querySelector('body')
+const refs = {
+    start: document.querySelector('[data-start]'),
+    stop: document.querySelector('[data-stop]'),
+    body: document.querySelector('body'),
+}
 
 function getRandomHexColor() {
     return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
@@ -8,14 +10,14 @@ function getRandomHexColor() {
 
 let intervalId;
 
-start.addEventListener('click', evt => {
-    start.disabled = true;
+refs.start.addEventListener('click', () => {
+    refs.start.disabled = true;
     intervalId = setInterval(() => {
-        body.style.backgroundColor = getRandomHexColor();
+        refs.body.style.backgroundColor = getRandomHexColor();
     }, 1000)
 })
 
-stop.addEventListener('click', e => {
-    start.disabled = false;
+refs.stop.addEventListener('click', () => {
+    refs.start.disabled = false;
     clearInterval(intervalId);
 })

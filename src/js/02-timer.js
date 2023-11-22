@@ -38,7 +38,7 @@ function dateHandler(date) {
   refs.startBtn.addEventListener('click', () => {
     setClock(timeOut - 1000);
 
-    intervalId = setInterval(() => {
+    const intervalId = setInterval(() => {
       const timeToEndEverySec = futureTime - new Date().getTime();
       if (timeToEndEverySec <= 0) {
         clearInterval(intervalId);
