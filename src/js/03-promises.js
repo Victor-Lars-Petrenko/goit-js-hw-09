@@ -1,6 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const form = document.querySelector('.form');
+const formBtn = document.querySelector('.form button');
 
 function createPromise(position, delay) {
   return new Promise((resolve, rejected) => {
@@ -17,6 +18,7 @@ function createPromise(position, delay) {
 
 form.addEventListener('submit', e => {
   e.preventDefault();
+  formBtn.disabled = true;
   let delay = Number(form.elements.delay.value);
   const step = Number(form.elements.step.value);
   const amount = Number(form.elements.amount.value);
@@ -41,4 +43,8 @@ form.addEventListener('submit', e => {
       // console.log(`❌ Rejected promise ${position} in ${delay}ms`);
     });
   }
+  setTimeout(() => {
+    formBtn.disabled = false;
+    form.reset();
+  }, (Number(form.elements.delay.value) + step * amount + 3000));
 })
